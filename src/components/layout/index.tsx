@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { HeaderLayout } from "./header";
 
 interface ILayoutProps {
   children: JSX.Element;
@@ -18,7 +19,7 @@ const Wrapper = styled.div`
   height: 100vh;
   margin: 0 auto;
   display: grid;
-  grid-template-rows: 5fr 0.3fr;
+  grid-template-rows: 0.3fr 5fr 0.3fr;
 `;
 const Menu = styled.div`
   width: 100%;
@@ -44,6 +45,7 @@ export const Layout = (props: ILayoutProps) => {
   const router = useRouter();
   return (
     <Wrapper>
+      <HeaderLayout />
       {props.children}
       {router.pathname !== "/login" ? (
         <Menu>

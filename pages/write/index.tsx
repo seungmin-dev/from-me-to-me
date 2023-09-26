@@ -1,3 +1,5 @@
+import { Write } from "../../src/components/units/write";
+
 export default function WritePage() {
-  return <h1>Write</h1>;
+  return <Write />;
 }
