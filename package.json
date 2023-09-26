@@ -9,18 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "react-dom": "17.0.2",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "eslint": "8.50.0",
     "eslint-config-next": "13.5.3",
     "next": "12.1.0",
     "react": "17.0.2",
-    "styled-components": "^6.0.8",
+    "react-dom": "17.0.2",
+    "react-kakao-login": "^2.1.1",
     "typescript": "5.2.2"
   },
   "devDependencies": {
     "@types/node": "17.0.2",
-    "@types/react": "17.0.2",
-    "@types/styled-components": "^5.1.28"
+    "@types/react": "17.0.2"
   },
   "resolutions": {
     "@types/react": "17.0.2"
