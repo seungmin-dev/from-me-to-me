@@ -11,7 +11,7 @@ export default function LoginPage() {
   return (
     <>
       <h1>login</h1>
-      <button onClick={() => signIn()}>카카오로 시작하기</button>
+      <button onClick={() => signIn("kakao")}>카카오로 시작하기</button>
     </>
   );
 }
