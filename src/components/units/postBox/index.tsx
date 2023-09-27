@@ -3,6 +3,7 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { db } from "../../../../firestore";
 import styled from "@emotion/styled";
+import useSWR from "swr";
 
 interface ILetter {
   id: string;
@@ -86,7 +87,9 @@ const EmptyEmoji = styled.span`
 export const PostBox = () => {
   const { data: session } = useSession();
   const [letterList, setLetterList] = useState<ILetter[]>([]);
-
+  const { data } = useSWR(
+    `/api/talk?accessToken=${session?.accessToken}&useremail=${session?.user?.email}`
+  );
   const fetchLetters = async () => {
     const letterQuery = query(
       collection(db, "letters"),
@@ -109,7 +112,9 @@ export const PostBox = () => {
     setLetterList(letters);
   };
   useEffect(() => {
-    if (session) fetchLetters();
+    if (session) {
+      fetchLetters();
+    }
   }, [session]);
   return (
     <>

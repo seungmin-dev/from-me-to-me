@@ -4,6 +4,7 @@ import { Layout } from "../src/components/layout";
 import type { AppProps } from "next/app";
 import { GlobalStyles } from "../styles/globalStyles";
 import { RecoilRoot } from "recoil";
+import { SWRConfig } from "swr";
 
 export default function App({
   Component,
@@ -12,12 +13,19 @@ export default function App({
   return (
     <RecoilRoot>
       <SessionProvider session={session}>
-        <>
-          <Global styles={GlobalStyles} />
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </>
+        <SWRConfig
+          value={{
+            fetcher: (url: string) =>
+              fetch(url).then((response) => response.json()),
+          }}
+        >
+          <>
+            <Global styles={GlobalStyles} />
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </>
+        </SWRConfig>
       </SessionProvider>
     </RecoilRoot>
   );
