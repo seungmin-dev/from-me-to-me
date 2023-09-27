@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
-import { signOut, useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
+import { useRecoilState } from "recoil";
+import { userInfoState } from "../../../commons/stores";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -30,13 +32,13 @@ const Button = styled.button`
   }
 `;
 export const HeaderLayout = () => {
-  const session = useSession();
+  const [userinfo] = useRecoilState(userInfoState);
   return (
     <Wrapper>
-      {session.data ? (
+      {userinfo.email !== "" ? (
         <>
           <Greet>
-            <Name>{session.data?.user?.name}</Name>, 좋은 하루 되세요 😊
+            <Name>{userinfo.name}</Name>님, 좋은 하루 되세요 😊
           </Greet>
           <Button onClick={() => signOut()}>로그아웃</Button>
         </>
