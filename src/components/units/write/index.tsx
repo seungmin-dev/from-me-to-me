@@ -192,12 +192,12 @@ export const Write = () => {
         futureAt,
         username: userinfo.name,
         useremail: userinfo.email,
+        send: false,
       });
       if (file) {
         const locationRef = ref(storage, `letters/${userinfo.email}/${doc.id}`);
         const result = await uploadBytes(locationRef, file);
         const url = await getDownloadURL(result.ref);
-        console.log("url : ", url);
         await updateDoc(doc, {
           photo: url,
         });
