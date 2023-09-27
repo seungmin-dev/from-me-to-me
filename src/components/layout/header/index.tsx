@@ -6,10 +6,11 @@ import { userInfoState } from "../../../commons/stores";
 const Wrapper = styled.div`
   width: 100%;
   height: 100%;
-  padding: 20px 10px;
+  padding: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 2px solid #db2a0b;
 `;
 const Greet = styled.span`
   font-size: 20px;
