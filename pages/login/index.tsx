@@ -1,13 +1,6 @@
-import { useSession, signIn } from "next-auth/react";
-import { createUserInfo, getUserFromKakao } from "../api/user";
+import { signIn } from "next-auth/react";
 
-export default function LoginPage() {
-  const { data: session } = useSession();
-  if (session) {
-    const result = getUserFromKakao(session.accessToken!).then((response) => {
-      createUserInfo(response);
-    });
-  }
+export default function LoginPage(): JSX.Element {
   return (
     <>
       <h1>login</h1>
