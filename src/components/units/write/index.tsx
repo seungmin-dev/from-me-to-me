@@ -180,7 +180,7 @@ export const Write = () => {
       const curDate = new Date();
       if (type) {
         //디데이 타입
-        curDate.setDate(new Date().getDate() + 10);
+        curDate.setDate(new Date().getDate() + Number(dday));
         futureAt = curDate.getTime();
       } else {
         //특정일 타입
