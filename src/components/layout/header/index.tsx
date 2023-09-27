@@ -3,6 +3,7 @@ import { signOut } from "next-auth/react";
 import { useRecoilState, useResetRecoilState } from "recoil";
 import { userInfoState } from "../../../commons/stores";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -37,18 +38,25 @@ export const HeaderLayout = () => {
   const router = useRouter();
   const [userinfo] = useRecoilState(userInfoState);
   const resetUserinfo = useResetRecoilState(userInfoState);
+  const [name, setName] = useState("");
 
   const onSignOut = () => {
     router.push("/login");
     signOut();
     resetUserinfo();
   };
+  useEffect(() => {
+    setName(userinfo.name);
+  }, [userinfo]);
+
   return (
     <>
       <Wrapper>
-        <Greet>
-          <Name>{userinfo.name}</Name>님, 좋은 하루 되세요 😊
-        </Greet>
+        {userinfo ? (
+          <Greet>
+            <Name>{name}</Name>님, 좋은 하루 되세요 😊
+          </Greet>
+        ) : null}
         <Button onClick={onSignOut}>로그아웃</Button>
       </Wrapper>
     </>

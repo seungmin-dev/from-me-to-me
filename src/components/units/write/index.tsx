@@ -29,11 +29,11 @@ const Type = styled.div`
   &:hover {
     opacity: ${(props: ITypeProps) => (props.isActive ? "0.9" : "1")};
   }
-  &:first-child {
+  &:first-of-type {
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
   }
-  &:last-child {
+  &:last-of-type {
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
   }
@@ -266,7 +266,7 @@ export const Write = () => {
         />
         <Button
           onClick={onClickSubmit}
-          value={loading ? "미래로 보내는 중..." : "발송 !"}
+          defaultValue={loading ? "미래로 보내는 중..." : "발송 !"}
         />
       </Form>
     </Wrapper>
