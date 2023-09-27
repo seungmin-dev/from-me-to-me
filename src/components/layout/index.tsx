@@ -19,7 +19,7 @@ const Wrapper = styled.div`
   height: 100vh;
   margin: 0 auto;
   display: grid;
-  grid-template-rows: 0.3fr 5fr 0.3fr;
+  grid-template-rows: 0.3fr minmax(0, 5fr) 0.3fr;
 `;
 const Menu = styled.div`
   width: 100%;
@@ -44,20 +44,26 @@ type IMenuProps = {
 export const Layout = (props: ILayoutProps) => {
   const router = useRouter();
   return (
-    <Wrapper>
-      <HeaderLayout />
-      {props.children}
-      {router.pathname !== "/login" ? (
-        <Menu>
-          {MENU.map((el, i) => (
-            <Link href={el.page} key={i}>
-              <MenuItem isActive={router.pathname === el.page}>
-                {el.name}
-              </MenuItem>
-            </Link>
-          ))}
-        </Menu>
-      ) : null}
-    </Wrapper>
+    <>
+      <Wrapper>
+        {router.pathname !== "/login" && router.pathname !== "/loading" ? (
+          <>
+            <HeaderLayout />
+            {props.children}
+            <Menu>
+              {MENU.map((el, i) => (
+                <Link href={el.page} key={i}>
+                  <MenuItem isActive={router.pathname === el.page}>
+                    {el.name}
+                  </MenuItem>
+                </Link>
+              ))}
+            </Menu>
+          </>
+        ) : (
+          props.children
+        )}
+      </Wrapper>
+    </>
   );
 };

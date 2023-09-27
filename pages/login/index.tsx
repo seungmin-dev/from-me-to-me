@@ -1,10 +1,40 @@
+import styled from "@emotion/styled";
 import { signIn } from "next-auth/react";
+import kakaoBtn from "../../public/kakao_login_large_narrow.png";
+import Image from "next/image";
 
+const Wrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+`;
+const Emoji = styled.h1`
+  font-size: 50px;
+`;
+const Title = styled.h2``;
+const Button = styled.button`
+  cursor: pointer;
+  width: 180px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+`;
 export default function LoginPage(): JSX.Element {
   return (
     <>
-      <h1>login</h1>
-      <button onClick={() => signIn("kakao")}>카카오로 시작하기</button>
+      <div></div>
+      <Wrapper>
+        <Emoji>📬</Emoji>
+        <Title>From Me To Me ...</Title>
+        <Button onClick={() => signIn("kakao")}>
+          <Image src={kakaoBtn} />
+        </Button>
+      </Wrapper>
+      <div></div>
     </>
   );
 }

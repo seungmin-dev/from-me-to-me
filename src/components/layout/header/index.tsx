@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
 import { signOut } from "next-auth/react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useResetRecoilState } from "recoil";
 import { userInfoState } from "../../../commons/stores";
+import { useRouter } from "next/router";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -33,17 +34,23 @@ const Button = styled.button`
   }
 `;
 export const HeaderLayout = () => {
+  const router = useRouter();
   const [userinfo] = useRecoilState(userInfoState);
+  const resetUserinfo = useResetRecoilState(userInfoState);
+
+  const onSignOut = () => {
+    router.push("/login");
+    signOut();
+    resetUserinfo();
+  };
   return (
-    <Wrapper>
-      {userinfo.email !== "" ? (
-        <>
-          <Greet>
-            <Name>{userinfo.name}</Name>님, 좋은 하루 되세요 😊
-          </Greet>
-          <Button onClick={() => signOut()}>로그아웃</Button>
-        </>
-      ) : null}
-    </Wrapper>
+    <>
+      <Wrapper>
+        <Greet>
+          <Name>{userinfo.name}</Name>님, 좋은 하루 되세요 😊
+        </Greet>
+        <Button onClick={onSignOut}>로그아웃</Button>
+      </Wrapper>
+    </>
   );
 };

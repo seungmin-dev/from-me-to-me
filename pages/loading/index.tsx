@@ -12,6 +12,7 @@ import {
 import { db } from "../../firestore";
 import { useSetRecoilState } from "recoil";
 import { userInfoState } from "../../src/commons/stores";
+import { Loading } from "../../src/components/Loading";
 
 export default function LoadingPage() {
   const router = useRouter();
@@ -52,5 +53,5 @@ export default function LoadingPage() {
     if (session) redirectUser();
   }, [session]);
 
-  return <h1>loading...</h1>;
+  return <Loading />;
 }
