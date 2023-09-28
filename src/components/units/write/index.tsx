@@ -8,7 +8,7 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { useSession } from "next-auth/react";
 
 const Wrapper = styled.div`
-  padding: 30px 10px;
+  padding: 30px 20px;
 `;
 const TypeWrapper = styled.div`
   width: 100%;

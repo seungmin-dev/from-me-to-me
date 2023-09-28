@@ -87,7 +87,7 @@ const EmptyEmoji = styled.span`
 export const PostBox = () => {
   const { data: session } = useSession();
   const [letterList, setLetterList] = useState<ILetter[]>([]);
-  const { data } = useSWR(
+  useSWR(
     `/api/talk?accessToken=${session?.accessToken}&useremail=${session?.user?.email}`
   );
   const fetchLetters = async () => {
