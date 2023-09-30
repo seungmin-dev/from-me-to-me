@@ -1,4 +1,4 @@
-import { getToken } from "next-auth/jwt";
+// import { getToken } from "next-auth/jwt";
 import { NextRequest, NextResponse } from "next/server";
 export { default } from "next-auth/middleware";
 
@@ -9,14 +9,19 @@ export async function middleware(req: NextRequest) {
   // const token = await getToken({ req, secret, raw: true });
   const { pathname } = req.nextUrl;
   let token;
-  if (req.cookies)
-    token = req.cookies._parsed.get("next-auth.session-token")?.value;
+
+  console.log("req : ", req);
+  console.log("req.cookies : ", req.cookies);
+  console.log("req.cookies._parsed : ", req.cookies._parsed);
+
+  if (req.cookies._parsed.get("_vercel_jwt")) {
+    token = req.cookies._parsed.get("_vercel_jwt")?.value;
+  } else {
+    token = req.cookies._parsed.get("__Secure-next-auth.session-token")?.value;
+  }
 
   console.log("------------------------------");
-  console.log(
-    "token : ",
-    req.cookies._parsed.get("next-auth.session-token")?.value
-  );
+  console.log("token : ", token);
   console.log("------------------------------");
 
   console.log("------------------------------");
