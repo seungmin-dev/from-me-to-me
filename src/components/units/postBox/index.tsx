@@ -127,7 +127,9 @@ export const PostBox = () => {
               <RDate>보낸 날짜 : {toDate(letter.createdAt)}</RDate>
               <Contents>
                 <Text>{letter.contents}</Text>
-                {letter.photo ? <Image src={letter.photo} /> : null}
+                {letter.photo ? (
+                  <Image src={letter.photo} alt="편지 첨부 이미지" />
+                ) : null}
               </Contents>
               <SDate>받은 날짜 : {toDate(letter.futureAt)}</SDate>
               <LetterTitle>From Me...</LetterTitle>

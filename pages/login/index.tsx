@@ -31,7 +31,7 @@ export default function LoginPage(): JSX.Element {
         <Emoji>📬</Emoji>
         <Title>From Me To Me ...</Title>
         <Button onClick={() => signIn("kakao")}>
-          <Image src={kakaoBtn} />
+          <Image src={kakaoBtn} alt="카카오 로그인 버튼" />
         </Button>
       </Wrapper>
       <div></div>
