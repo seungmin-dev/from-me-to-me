@@ -22,6 +22,10 @@ const Button = styled.button`
   height: 40px;
   border: none;
   border-radius: 10px;
+  img {
+    width: 180px;
+    height: auto;
+  }
 `;
 export default function LoginPage(): JSX.Element {
   return (
